@@ -1,3 +1,7 @@
+import RPi.GPIO as GPIO
+import time
+
+
 class Robot():
 	def __init__(self, Mazes):
 		self.Mazes = []
