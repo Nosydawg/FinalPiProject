@@ -9,24 +9,45 @@ GPIO.setup(18,GPIO.OUT)
 GPIO.setup(19,GPIO.OUT)
 left = GPIO.PWM(19,50)
 right = GPIO.PWM(18,100)
+right.start(0)
+left.start(0)
 
 # left turn
-left.stop()
-right.start(10)
-time.sleep(1.3)
+def leftTurn():    
+    left.ChangeDutyCycle(0)
+    right.ChangeDutyCycle(10)
+    time.sleep(1.3)
+    left.ChangeDutyCycle(0)
+    right.ChangeDutyCycle(0)
 
 # right turn
-right.stop()
-left.start(10)
-time.sleep(1.3)
+def rightTurn():    
+    right.ChangeDutyCycle(0)
+    left.ChangeDutyCycle(10)
+    time.sleep(1.3)
+    left.ChangeDutyCycle(0)
+    right.ChangeDutyCycle(0)
 
 # forward
-left.start(10)
-right.start(10)
+def forward():    
+    left.ChangeDutyCycle(10)
+    right.ChangeDutyCycle(10)
+    time.sleep(1)
+    left.ChangeDutyCycle(0)
+    right.ChangeDutyCycle(0)
 
 # backward
-left.start(5)
-right.start(30)
+def backward():    
+    left.ChangeDutyCycle(5)
+    right.ChangeDutyCycle(30)
+    time.sleep(1)
+    left.ChangeDutyCycle(0)
+    right.ChangeDutyCycle(0)
+
+leftTurn()
+rightTurn()
+forward()
+backward()
 
 GPIO.cleanup()
 
