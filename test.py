@@ -8,7 +8,6 @@
 import Tkinter
 import RPi.GPIO as GPIO
 import time
-import pygame
 
 # functions to move the robot
 
@@ -21,10 +20,10 @@ def leftTurn(event):
     left = GPIO.PWM(19,50)
     right = GPIO.PWM(18,100)
     left.start(0)
-    right.start(10)
-    time.sleep(1.5)
-    left.start(10)
-    time.sleep(1)
+    right.start(0)
+    left.ChangeDutyCycle(0)
+    right.ChangeDutyCycle(10)
+    time.sleep(1.35)
 
 # right turn
 def rightTurn(event):
@@ -34,11 +33,11 @@ def rightTurn(event):
     GPIO.setup(19,GPIO.OUT)
     left = GPIO.PWM(19,50)
     right = GPIO.PWM(18,100)
+    left.start(0)
     right.start(0)
-    left.start(10)
-    time.sleep(1.5)
-    right.start(10)
-    time.sleep(1)
+    left.ChangeDutyCycle(10)
+    right.ChangeDutyCycle(0)
+    time.sleep(1.35)
 
 # forward
 def forward(event):
@@ -52,7 +51,7 @@ def forward(event):
     right.start(0)
     left.ChangeDutyCycle(10)
     right.ChangeDutyCycle(10)
-    time.sleep(2)
+    time.sleep(1.35)
 
 # backward
 def backward(event):
@@ -62,9 +61,11 @@ def backward(event):
     GPIO.setup(19,GPIO.OUT)
     left = GPIO.PWM(19,50)
     right = GPIO.PWM(18,100)
-    left.start(5)
-    right.start(30)
-    time.sleep(2)
+    left.start(0)
+    right.start(0)
+    left.ChangeDutyCycle(5)
+    right.ChangeDutyCycle(30)
+    time.sleep(1.35)
 
 
 #########################################################################################
